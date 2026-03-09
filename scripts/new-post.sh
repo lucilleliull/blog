@@ -9,12 +9,15 @@ fi
 
 SLUG=$(echo "$TITLE" | tr '[:upper:]' '[:lower:]' | sed -E 's/[^a-z0-9]+/-/g' | sed -E 's/^-+|-+$//g')
 DATE=$(date +"%Y-%m-%dT%H:%M:%S%z")
-FILE="content/posts/${SLUG}.md"
+DIR="content/posts/${SLUG}"
+FILE="${DIR}/index.md"
 
-if [[ -f "$FILE" ]]; then
-  echo "Exists: $FILE" >&2
+if [[ -e "$DIR" ]]; then
+  echo "Exists: $DIR" >&2
   exit 1
 fi
+
+mkdir -p "$DIR"
 
 cat > "$FILE" <<EOF2
 ---
