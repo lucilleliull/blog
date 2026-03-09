@@ -2,6 +2,8 @@
 
 Hugo + Cloudflare Pages.
 
+> Content source: 本地文件夹「lucille博客文章」（Notion 导出的 Markdown）。
+
 ## 本地预览
 
 ```bash
