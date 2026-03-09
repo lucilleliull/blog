@@ -58,7 +58,7 @@ meme coin：
 在**强势信号K线的上方用突破单入场 stop market**
 入场之后**在新的低点设置卖出止损**
 
-![69a21e2279edfba916d6c403eafdd413.png](69a21e2279edfba916d6c403eafdd413.png)
+![69a21e2279edfba916d6c403eafdd413.png](%E6%88%91%E7%9A%84%E4%BA%A4%E6%98%93%E6%96%B9%E5%BC%8F%EF%BC%9A%E6%97%A5%E5%86%85price%20action+%E5%8D%95%E8%BE%B9%E8%B6%8B%E5%8A%BF%E6%BB%9A%E4%BB%93/69a21e2279edfba916d6c403eafdd413.png)
 
 币滚仓：全仓+止损设置好，100美金 3倍做多，浮盈加仓
 
