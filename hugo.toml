@@ -4,7 +4,8 @@ title = "刘露西西 / 人生指南针"
 theme = "PaperMod"
 
 enableRobotsTXT = true
-paginate = 20
+[pagination]
+  pagerSize = 20
 
 [outputs]
   home = ["HTML", "RSS", "JSON"]
