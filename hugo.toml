@@ -1,0 +1,34 @@
+baseURL = "https://example.pages.dev/"
+languageCode = "zh-cn"
+title = "lucille / blog"
+theme = "PaperMod"
+
+enableRobotsTXT = true
+paginate = 20
+
+[params]
+  env = "production"
+  defaultTheme = "auto"
+  ShowReadingTime = true
+  ShowBreadCrumbs = true
+  ShowCodeCopyButtons = true
+  ShowPostNavLinks = true
+  disableThemeToggle = false
+
+  # 极简：少装饰，多正文
+  ShowToc = false
+
+[menu]
+  [[menu.main]]
+    name = "Posts"
+    url = "/posts/"
+    weight = 1
+
+  [[menu.main]]
+    name = "About"
+    url = "/about/"
+    weight = 2
+
+[markup]
+  [markup.highlight]
+    noClasses = false
