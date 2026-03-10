@@ -1,0 +1,122 @@
+/* Editorial Preview — lucille
+   Goal: stronger hierarchy, magazine-like rhythm, tighter list pages.
+*/
+
+:root {
+  --content-max: 66ch;           /* narrower reading measure */
+  --content-max-wide: 74ch;
+  --meta-fg: color-mix(in oklab, var(--secondary) 72%, var(--primary) 28%);
+}
+
+/* Narrow overall content width */
+.main {
+  max-width: var(--content-max);
+}
+
+/* Some pages (like archives/search) can breathe a bit */
+.archive, .page-header, .post-content {
+  max-width: var(--content-max);
+}
+
+/* Title hierarchy */
+.post-title {
+  letter-spacing: -0.01em;
+  line-height: 1.08;
+}
+
+/* List page: make each entry feel like a table-of-contents item */
+.post-entry {
+  border: none;
+  padding: 0;
+  margin: 0 0 26px 0;
+}
+
+.post-entry + .post-entry {
+  padding-top: 26px;
+  border-top: 1px solid color-mix(in oklab, var(--border) 70%, transparent);
+}
+
+/* List titles: stronger */
+.entry-header h2 {
+  font-size: clamp(1.15rem, 1.05rem + 0.8vw, 1.55rem);
+  font-weight: 680;
+  letter-spacing: -0.015em;
+  margin: 0 0 8px 0;
+}
+
+/* Meta: smaller + calmer */
+.entry-footer, .entry-footer span, .post-meta {
+  color: var(--meta-fg);
+  font-size: 0.92rem;
+}
+
+/* Excerpts: shorter visual weight */
+.entry-content {
+  color: color-mix(in oklab, var(--secondary) 85%, var(--primary) 15%);
+  font-size: 1rem;
+  line-height: 1.7;
+  margin-top: 6px;
+}
+
+/* Reduce "wall of text" on list pages */
+.entry-content p {
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Home intro: more editorial */
+.home-info {
+  padding: 18px 0 6px;
+}
+
+.home-info .entry-header h1 {
+  font-size: clamp(1.6rem, 1.3rem + 1.2vw, 2.2rem);
+  letter-spacing: -0.02em;
+}
+
+.home-info .entry-content {
+  margin-top: 8px;
+  font-size: 1.05rem;
+}
+
+/* Post typography */
+.post-content {
+  font-size: 1.03rem;
+  line-height: 1.85;
+}
+
+.post-content p {
+  margin: 0 0 1.05em;
+}
+
+/* Better heading rhythm */
+.post-content h2 {
+  margin-top: 2.2em;
+  margin-bottom: 0.7em;
+  letter-spacing: -0.01em;
+}
+
+.post-content h3 {
+  margin-top: 1.8em;
+  margin-bottom: 0.65em;
+}
+
+/* Links: subtle but deliberate */
+.post-content a {
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.22em;
+}
+
+/* Blockquote: editorial line */
+.post-content blockquote {
+  border-inline-start: 3px solid color-mix(in oklab, var(--primary) 55%, var(--secondary) 45%);
+  padding-inline-start: 16px;
+}
+
+/* Mobile: keep width comfortable */
+@media (max-width: 480px) {
+  .main { max-width: 92vw; }
+  .entry-header h2 { line-height: 1.18; }
+}
