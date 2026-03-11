@@ -9,3 +9,6 @@ resources/
 # editor
 .vscode/
 .idea/
+
+# local tooling
+.xhs/
