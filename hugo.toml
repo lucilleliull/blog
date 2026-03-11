@@ -26,7 +26,7 @@ enableRobotsTXT = true
 
   [params.homeInfoParams]
     Title = "人生指南针"
-    Content = "把 Notion 里的笔记，变成可检索、可发布的文章。"
+    Content = "你选择的视角就是你想体验的世界"
 
   [params.fuseOpts]
     isCaseSensitive = false
