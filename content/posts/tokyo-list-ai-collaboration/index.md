@@ -40,9 +40,13 @@ draft: false
 
 ---
 
-## 三个小时后
+## 几分钟后第一版就出来了
+
+加上来回调了几轮，总共半小时搞定。
 
 成品长这样：**[lucilleandsun-tokyo.pages.dev](https://lucilleandsun-tokyo.pages.dev)**
+
+![Lucille & Sun's Tokyo List](hero.jpg)
 
 105 个东京地点。20 个分类。可以搜索，可以按分类和区域筛选。
 
@@ -91,6 +95,8 @@ draft: false
 现在的 AI，真的可以直接帮你做。
 
 你只需要说清楚三件事：参考什么风格、要什么功能、叫什么名字。
+
+我选的是极简日系风。但如果你喜欢手绘插画风，完全可以让 AI 给每个分类配上手绘图标——风格这件事，你说了算。
 
 然后，就没有然后了。
 
