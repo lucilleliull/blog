@@ -46,7 +46,15 @@ draft: false
 
 105 个东京地点。20 个分类。可以搜索，可以按分类和区域筛选。
 
+![Places 页面](places.jpg)
+
 评分最高的 20 个，单独列了一个 Top Picks。
+
+![Top Picks](top-picks.jpg)
+
+按分类浏览也很清晰：
+
+![Categories](categories.jpg)
 
 每个地点点一下，直接跳到 Google Maps 导航。
 
