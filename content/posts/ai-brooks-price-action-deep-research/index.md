@@ -1,5 +1,5 @@
 ---
-title: ""
+title: "AI Brooks价格行为深度研究报告"
 date: 2026-04-13T10:57:32+08:00
 draft: false
 tags: ["交易", "Price Action", "方方土", "Al Brooks", "研究"]
