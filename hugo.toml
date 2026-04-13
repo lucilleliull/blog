@@ -1,6 +1,6 @@
 baseURL = "https://lucille-blog.pages.dev/"
 languageCode = "zh-cn"
-title = "刘露西西 / 人生指南针"
+title = "刘露西西 / Lucille"
 theme = "PaperMod"
 
 enableRobotsTXT = true
@@ -12,21 +12,23 @@ enableRobotsTXT = true
 
 [params]
   env = "production"
-  defaultTheme = "auto"
-  disableThemeToggle = false
+  defaultTheme = "light"
+  disableThemeToggle = true
 
   ShowReadingTime = true
-  ShowWordCount = true
-  ShowBreadCrumbs = true
+  ShowWordCount = false
+  ShowBreadCrumbs = false
   ShowCodeCopyButtons = true
   ShowPostNavLinks = true
-
-  # 极简：少装饰，多正文
   ShowToc = false
 
   [params.homeInfoParams]
-    Title = "人生指南针"
+    Title = "刘露西西 / Lucille"
     Content = "你选择的视角就是你想体验的世界"
+
+  [[params.socialIcons]]
+    name = "rss"
+    url = "/index.xml"
 
   [params.fuseOpts]
     isCaseSensitive = false
