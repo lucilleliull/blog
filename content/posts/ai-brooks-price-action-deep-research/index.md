@@ -6,7 +6,6 @@ tags: ["交易", "Price Action", "方方土", "Al Brooks", "研究"]
 description: "一份关于 Al Brooks 价格行为体系的深度研究报告（AI整理版）。"
 ---
 
-# AI Brooks价格行为深度研究报告
 
 ## 研究对象界定与研究方法
 
