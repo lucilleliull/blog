@@ -12,3 +12,4 @@ resources/
 
 # local tooling
 .xhs/
+node_modules/
