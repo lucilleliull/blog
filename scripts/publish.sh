@@ -9,12 +9,13 @@ hugo --minify >/dev/null
 echo "\nCommit + push..."
 git add -A
 
-git commit -m "Publish" || {
-  echo "Nothing to commit.";
-  exit 0;
-}
+if git diff --cached --quiet; then
+  echo "Nothing new to commit; publishing the current commit."
+else
+  git commit -m "Publish"
+fi
 
-git push
+git push origin HEAD:main
 
 echo "\nDeploying to Cloudflare Pages..."
 COMMIT_SHA=$(git rev-parse HEAD)
