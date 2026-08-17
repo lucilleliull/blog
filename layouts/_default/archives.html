@@ -1,16 +1,17 @@
 {{- define "main" }}
-<header class="index-header compact-header">
-  <p class="eyebrow">CHRONOLOGICAL INDEX</p>
-  <h1>归档</h1>
+<header class="journal-page-header compact-page-header">
+  <p class="section-number">§ ARCHIVE</p>
+  <h1>Everything,<br><em>in order.</em></h1>
+  <div class="page-intro"><p>A chronological index of every published entry.</p></div>
 </header>
 <section class="article-index archive-index">
   {{- $pages := where site.RegularPages "Type" "posts" }}
   {{- range $pages.GroupByDate "2006" }}
   <section class="year-group">
-    <h2>{{ .Key }}</h2>
+    <header><h2>{{ .Key }}</h2><span>{{ len .Pages }} ARTICLES</span></header>
     <ol>
       {{- range .Pages }}
-      <li><time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "01.02" }}</time><div><a class="article-title" href="{{ .RelPermalink }}">{{ .Title }}</a></div></li>
+      <li><time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "Jan 02" | upper }}</time><div><a class="article-title" href="{{ .RelPermalink }}"><span>{{ .Title }}</span><b>→</b></a></div></li>
       {{- end }}
     </ol>
   </section>

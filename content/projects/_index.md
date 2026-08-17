@@ -1,6 +1,8 @@
 ---
-title: "项目"
-description: "我真正做出来的东西。项目记录结果；文章记录理解。"
+title: "Projects"
+description: "Finished experiments, practical systems, and work worth keeping."
 ---
 
-这里将收录已经完成、值得长期保留的项目。每个项目可以是一组图片和简短说明，也可以是一篇完整的过程记录。
+Projects record the result; essays record the change in understanding.
+
+完成、值得长期保留的项目会收录在这里。它可以是一组图片和简短说明，也可以是一篇完整的过程记录。

@@ -1,26 +1,67 @@
 {{- define "main" }}
-  {{- partial "home_info.html" . }}
   {{- $pages := where site.RegularPages "Type" "posts" }}
-  <section class="article-index home-index" aria-labelledby="latest-articles">
-    <header class="section-heading">
-      <h2 id="latest-articles">最新文章</h2>
-      <a href="{{ "posts/" | relLangURL }}">全部文章</a>
+  {{- $count := len $pages }}
+  <section class="journal-hero" aria-labelledby="journal-motto">
+    <div class="hero-edition"><span>THE JOURNAL</span><span>EST. 2026</span></div>
+    <h1 id="journal-motto">A notebook for<br><em>things worth keeping.</em></h1>
+    <p>Essays, field notes, investment theses, and travel journals. Written in Chinese, organised in English, published when they are ready.</p>
+    <dl class="hero-facts">
+      <div><dt>ENTRIES</dt><dd>{{ printf "%02d" $count }}</dd></div>
+      <div><dt>LANGUAGE</dt><dd>中文 · EN</dd></div>
+      <div><dt>SUBJECTS</dt><dd>04</dd></div>
+      <div><dt>CADENCE</dt><dd>IRREGULAR</dd></div>
+    </dl>
+  </section>
+
+  <aside class="now-strip" aria-label="Currently">
+    <span>CURRENTLY</span>
+    {{- with index $pages 0 }}<a href="{{ .RelPermalink }}">Reading · {{ .Title }} <b>↗</b></a>{{ end }}
+    <span>SHANGHAI · {{ now.Format "02 Jan 2006" | upper }}</span>
+  </aside>
+
+  <section class="journal-section subjects-section" aria-labelledby="subjects-heading">
+    <header class="editorial-heading">
+      <p>§ 01 · SUBJECTS</p>
+      <h2 id="subjects-heading">Four recurring lines of inquiry.</h2>
+      <p class="section-deck">The sections are porous by design. A book can become an investment idea; a trip can become a way of seeing.</p>
     </header>
+    <div class="subject-grid">
+      <a href="{{ "search/?q=阅读" | relURL }}"><span>01</span><strong>READING</strong><small>Books, notes &amp; ideas</small><i>→</i></a>
+      <a href="{{ "search/?q=旅行" | relURL }}"><span>02</span><strong>TRAVEL</strong><small>Places, routes &amp; ways of living</small><i>→</i></a>
+      <a href="{{ "search/?q=投资" | relURL }}"><span>03</span><strong>INVESTING</strong><small>Markets, capital &amp; judgment</small><i>→</i></a>
+      <a href="{{ "search/?q=体验" | relURL }}"><span>04</span><strong>EXPERIENCE</strong><small>Attention, taste &amp; the examined life</small><i>→</i></a>
+    </div>
+  </section>
+
+  <section class="journal-section articles-section" aria-labelledby="latest-articles">
+    <header class="editorial-heading split-heading">
+      <div><p>§ 02 · ARTICLES</p><h2 id="latest-articles">The journal — notes kept in public.</h2></div>
+      <a class="text-link" href="{{ "posts/" | relLangURL }}">ALL ARTICLES ↗</a>
+    </header>
+    <div class="article-index home-index">
     {{- range $pages.GroupByDate "2006" }}
     <section class="year-group" aria-labelledby="year-{{ .Key }}">
-      <h3 id="year-{{ .Key }}">{{ .Key }}</h3>
+      <header><h3 id="year-{{ .Key }}">{{ .Key }}</h3><span>{{ len .Pages }} ARTICLES</span></header>
       <ol>
         {{- range .Pages }}
         <li>
-          <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "01.02" }}</time>
+          <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "Jan 02" | upper }}</time>
           <div>
-            <a class="article-title" href="{{ .RelPermalink }}">{{ .Title }}</a>
-            {{- with .Description }}<p>{{ . }}</p>{{ end }}
+            <a class="article-title" href="{{ .RelPermalink }}"><span>{{ .Title }}</span><b>→</b></a>
           </div>
         </li>
         {{- end }}
       </ol>
     </section>
     {{- end }}
+    </div>
+  </section>
+
+  <section class="journal-section work-section" aria-labelledby="work-heading">
+    <header class="editorial-heading split-heading">
+      <div><p>§ 03 · PROJECTS</p><h2 id="work-heading">Where notes become objects.</h2></div>
+      <a class="text-link" href="{{ "projects/" | relLangURL }}">OPEN PROJECTS ↗</a>
+    </header>
+    <p class="work-note">Finished experiments, practical systems, and things made with care. Projects record the result; essays record what changed in the process.</p>
   </section>
 {{- end }}

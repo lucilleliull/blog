@@ -1,8 +1,8 @@
 {{- define "main" }}
-<header class="index-header projects-header">
-  <p class="eyebrow">WHAT I MADE</p>
-  <h1>{{ .Title }}</h1>
-  {{- with .Description }}<p>{{ . }}</p>{{ end }}
+<header class="journal-page-header projects-header">
+  <p class="section-number">§ PROJECTS</p>
+  <h1>Things made,<br><em>not merely imagined.</em></h1>
+  <div class="page-intro"><p>{{ with .Description }}{{ . }}{{ else }}Finished experiments, practical systems, and work worth keeping.{{ end }}</p></div>
 </header>
 {{- if .Pages }}
 <section class="project-index">
@@ -28,6 +28,6 @@
   {{- end }}
 </section>
 {{- else }}
-<div class="empty-state">{{ .Content }}</div>
+<div class="empty-state"><span>THE SHELF IS OPEN</span>{{ .Content }}</div>
 {{- end }}
 {{- end }}

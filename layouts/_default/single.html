@@ -1,28 +1,45 @@
 {{- define "main" }}
-<article class="post-single{{ if eq .Type "projects" }} project-single{{ end }}">
-  <header class="post-header">
-    <p class="eyebrow">{{ if eq .Type "projects" }}PROJECT{{ else }}ARTICLE{{ end }}</p>
+{{- $isArticle := eq .Type "posts" }}
+{{- $characters := strings.RuneCount .Plain }}
+{{- $readingMinutes := div (add $characters 449) 450 }}
+<article class="article-page{{ if eq .Type "projects" }} project-single{{ end }}">
+  <a class="back-link" href="{{ if $isArticle }}{{ "posts/" | relLangURL }}{{ else }}{{ "projects/" | relLangURL }}{{ end }}">← {{ if $isArticle }}ALL ARTICLES{{ else }}ALL PROJECTS{{ end }}</a>
+  <header class="article-header">
+    <p class="article-kind">{{ if $isArticle }}ESSAY · 中文{{ else }}PROJECT{{ end }}</p>
     <h1>{{ .Title }}</h1>
-    {{- with .Description }}<p class="post-description">{{ . }}</p>{{ end }}
-    <div class="post-meta">
-      <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2006 年 01 月 02 日" }}</time>
-      {{- if and (eq .Type "posts") site.Params.ShowReadingTime }}
-        {{- $characters := strings.RuneCount .Plain }}
-        {{- $readingMinutes := div (add $characters 449) 450 }}
-        <span>约 {{ $readingMinutes }} 分钟阅读</span>
-      {{- end }}
-      {{- with .Params.role }}<span>{{ . }}</span>{{ end }}
+    {{- with .Description }}<p class="article-deck">{{ . }}</p>{{ end }}
+    <div class="article-meta">
+      <span>BY LUCILLE</span>
+      <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "02 January 2006" | upper }}</time>
+      {{- if $isArticle }}<span>{{ $readingMinutes }} MIN READ</span>{{ end }}
+      {{- with .Params.role }}<span>{{ . | upper }}</span>{{ end }}
     </div>
   </header>
-  <div class="post-content">
-    {{- if not (.Param "disableAnchoredHeadings") }}
-      {{- partial "anchored_headings.html" .Content }}
-    {{- else }}{{ .Content }}{{ end }}
+
+  <div class="article-rule"><span>§</span></div>
+  <div class="article-layout">
+    {{- if and $isArticle (in .TableOfContents "<li>") }}
+    <aside class="article-toc">
+      <div><p>ON THIS PAGE</p>{{ .TableOfContents }}</div>
+    </aside>
+    {{- end }}
+    <div class="post-content">
+      {{- if not (.Param "disableAnchoredHeadings") }}
+        {{- partial "anchored_headings.html" .Content }}
+      {{- else }}{{ .Content }}{{ end }}
+    </div>
   </div>
-  {{- if eq .Type "posts" }}
+
+  {{- if $isArticle }}
   <footer class="article-end">
-    <p>— END —</p>
-    {{- if (.Param "ShowPostNavLinks") }}{{ partial "post_nav_links.html" . }}{{ end }}
+    <div class="article-colophon">
+      <p>END OF ARTICLE</p>
+      <span>Published in the journal · {{ .Date.Format "2006" }} · Lucille</span>
+    </div>
+    <nav class="article-navigation" aria-label="Article navigation">
+      {{- with .PrevInSection }}<a href="{{ .RelPermalink }}"><small>PREVIOUS</small><span>{{ .Title }}</span><b>←</b></a>{{ end }}
+      {{- with .NextInSection }}<a href="{{ .RelPermalink }}"><small>NEXT</small><span>{{ .Title }}</span><b>→</b></a>{{ end }}
+    </nav>
   </footer>
   {{- end }}
 </article>

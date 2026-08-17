@@ -14,7 +14,7 @@ enableRobotsTXT = true
 
 [params]
   env = "production"
-  description = "Lucille 的个人长期出版物：经过时间筛选以后，仍然值得留下来的文章、项目和判断。"
+  description = "Lucille's independent journal on reading, travel, investing, and the texture of lived experience."
   author = "Lucille"
   mainSections = ["posts"]
   defaultTheme = "light"
@@ -31,8 +31,8 @@ enableRobotsTXT = true
   ShowToc = false
 
   [params.homeInfoParams]
-    Title = "你选择的视角，就是你想体验的世界。"
-    Content = "一份关于阅读、旅行、投资与真实经验的个人长期出版物。"
+    Title = "A notebook for things worth keeping."
+    Content = "Essays, field notes, investment theses, and travel journals — published only when they are ready."
 
   [params.label]
     text = "LUCILLE"
@@ -55,17 +55,17 @@ enableRobotsTXT = true
 
 [menu]
   [[menu.main]]
-    name = "文章"
+    name = "ARTICLES"
     url = "/posts/"
     weight = 1
 
   [[menu.main]]
-    name = "项目"
+    name = "PROJECTS"
     url = "/projects/"
     weight = 2
 
   [[menu.main]]
-    name = "关于"
+    name = "ABOUT"
     url = "/about/"
     weight = 3
 

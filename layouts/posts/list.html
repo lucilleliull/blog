@@ -1,19 +1,23 @@
 {{- define "main" }}
-<header class="index-header">
-  <p class="eyebrow">WRITING & JUDGMENT</p>
-  <h1>文章</h1>
-  <p>不记录信息，记录判断。按时间保存那些几年以后仍然值得重读的文章。</p>
+{{- $pages := .RegularPagesRecursive }}
+<header class="journal-page-header">
+  <p class="section-number">§ ARTICLES</p>
+  <h1>The journal —<br><em>notes kept in public.</em></h1>
+  <div class="page-intro">
+    <p>Essays, notes, and letters on reading, travel, investing, and lived experience. Written in Chinese; filed in English.</p>
+    <p>{{ len $pages }} ENTRIES · SINCE 2026 · <a href="{{ "index.xml" | relLangURL }}">RSS ↗</a></p>
+  </div>
 </header>
-<section class="article-index" aria-label="全部文章">
-  {{- range .RegularPagesRecursive.GroupByDate "2006" }}
+<section class="article-index full-index" aria-label="All articles">
+  {{- range $pages.GroupByDate "2006" }}
   <section class="year-group" aria-labelledby="year-{{ .Key }}">
-    <h2 id="year-{{ .Key }}">{{ .Key }}</h2>
+    <header><h2 id="year-{{ .Key }}">{{ .Key }}</h2><span>{{ len .Pages }} ARTICLES</span></header>
     <ol>
       {{- range .Pages }}
       <li>
-        <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "01.02" }}</time>
+        <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "Jan 02" | upper }}</time>
         <div>
-          <a class="article-title" href="{{ .RelPermalink }}">{{ .Title }}</a>
+          <a class="article-title" href="{{ .RelPermalink }}"><span>{{ .Title }}</span><b>→</b></a>
           {{- with .Description }}<p>{{ . }}</p>{{ end }}
         </div>
       </li>
