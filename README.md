@@ -30,11 +30,18 @@ hugo server -D
 
 ## 部署
 
-Cloudflare Pages 连接 GitHub 仓库，构建命令：
+GitHub 保存文章和版本历史；当前 Cloudflare Pages 项目采用 Direct Upload。`./scripts/publish.sh` 会依次完成：
 
-- Build command: `hugo --minify`
-- Output directory: `public`
-- Environment: `HUGO_VERSION=0.157.0`
+1. `hugo --minify` 生产构建。
+2. commit 并 push 到 GitHub。
+3. 通过 Wrangler 将 `public/` 发布到 `lucille-blog` Pages 项目。
+
+第一次发布时，Wrangler 可能会要求在浏览器完成一次 Cloudflare 登录。手动发布命令：
+
+```bash
+hugo --minify
+npx wrangler@latest pages deploy public --project-name lucille-blog --branch main
+```
 
 ## 内容目录
 
