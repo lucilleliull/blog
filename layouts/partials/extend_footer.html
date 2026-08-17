@@ -1,0 +1,53 @@
+{{- if eq .Layout "lucille-search" }}
+<script>
+(() => {
+  const box = document.getElementById('searchbox');
+  const input = document.getElementById('searchInput');
+  const results = document.getElementById('searchResults');
+  const status = document.getElementById('searchStatus');
+  let articles = [];
+
+  const normalize = (value) => String(value || '').toLocaleLowerCase('zh-CN');
+  const render = () => {
+    const query = normalize(input.value.trim());
+    results.replaceChildren();
+    if (!query) {
+      status.textContent = '';
+      return;
+    }
+    const matches = [];
+    const seen = new Set();
+    for (const article of articles) {
+      if (seen.has(article.permalink)) continue;
+      if (!normalize(`${article.title} ${article.summary} ${article.content}`).includes(query)) continue;
+      seen.add(article.permalink);
+      matches.push(article);
+      if (matches.length === 20) break;
+    }
+    status.textContent = matches.length ? `找到 ${matches.length} 篇文章` : '没有找到相关文章';
+    matches.forEach((article) => {
+      const item = document.createElement('li');
+      const link = document.createElement('a');
+      link.href = article.permalink;
+      link.textContent = article.title;
+      item.append(link);
+      results.append(item);
+    });
+  };
+
+  fetch(box.dataset.indexUrl)
+    .then((response) => {
+      if (!response.ok) throw new Error('Search index unavailable');
+      return response.json();
+    })
+    .then((data) => {
+      articles = Array.isArray(data) ? data : [];
+      input.addEventListener('input', render);
+      render();
+    })
+    .catch(() => {
+      status.textContent = '搜索暂时不可用，请稍后再试。';
+    });
+})();
+</script>
+{{- end }}

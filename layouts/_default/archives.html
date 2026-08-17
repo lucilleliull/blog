@@ -1,0 +1,19 @@
+{{- define "main" }}
+<header class="index-header compact-header">
+  <p class="eyebrow">CHRONOLOGICAL INDEX</p>
+  <h1>归档</h1>
+</header>
+<section class="article-index archive-index">
+  {{- $pages := where site.RegularPages "Type" "posts" }}
+  {{- range $pages.GroupByDate "2006" }}
+  <section class="year-group">
+    <h2>{{ .Key }}</h2>
+    <ol>
+      {{- range .Pages }}
+      <li><time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "01.02" }}</time><div><a class="article-title" href="{{ .RelPermalink }}">{{ .Title }}</a></div></li>
+      {{- end }}
+    </ol>
+  </section>
+  {{- end }}
+</section>
+{{- end }}

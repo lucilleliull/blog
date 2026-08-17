@@ -1,0 +1,26 @@
+{{- define "main" }}
+  {{- partial "home_info.html" . }}
+  {{- $pages := where site.RegularPages "Type" "posts" }}
+  <section class="article-index home-index" aria-labelledby="latest-articles">
+    <header class="section-heading">
+      <h2 id="latest-articles">最新文章</h2>
+      <a href="{{ "posts/" | relLangURL }}">全部文章</a>
+    </header>
+    {{- range $pages.GroupByDate "2006" }}
+    <section class="year-group" aria-labelledby="year-{{ .Key }}">
+      <h3 id="year-{{ .Key }}">{{ .Key }}</h3>
+      <ol>
+        {{- range .Pages }}
+        <li>
+          <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "01.02" }}</time>
+          <div>
+            <a class="article-title" href="{{ .RelPermalink }}">{{ .Title }}</a>
+            {{- with .Description }}<p>{{ . }}</p>{{ end }}
+          </div>
+        </li>
+        {{- end }}
+      </ol>
+    </section>
+    {{- end }}
+  </section>
+{{- end }}

@@ -1,0 +1,12 @@
+{{- if not (.Param "hideFooter") }}
+<footer class="site-footer">
+  <a class="footer-wordmark" href="{{ "" | relLangURL }}">LUCILLE</a>
+  <nav aria-label="页脚导航">
+    <a href="{{ "archives/" | relLangURL }}">归档</a>
+    <a href="{{ "search/" | relLangURL }}">搜索</a>
+    <a href="{{ "index.xml" | relLangURL }}">RSS</a>
+  </nav>
+  <span>© {{ now.Year }}</span>
+</footer>
+{{- end }}
+{{- partial "extend_footer.html" . }}

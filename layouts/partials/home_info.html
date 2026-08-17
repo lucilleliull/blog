@@ -1,0 +1,7 @@
+{{- with site.Params.homeInfoParams }}
+<section class="publication-intro" aria-labelledby="publication-motto">
+  <p class="eyebrow">A PERSONAL PUBLICATION</p>
+  <h1 id="publication-motto">{{ .Title | markdownify }}</h1>
+  <p class="publication-note">{{ .Content | markdownify }}</p>
+</section>
+{{- end }}

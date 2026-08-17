@@ -1,0 +1,29 @@
+{{- define "main" }}
+<article class="post-single{{ if eq .Type "projects" }} project-single{{ end }}">
+  <header class="post-header">
+    <p class="eyebrow">{{ if eq .Type "projects" }}PROJECT{{ else }}ARTICLE{{ end }}</p>
+    <h1>{{ .Title }}</h1>
+    {{- with .Description }}<p class="post-description">{{ . }}</p>{{ end }}
+    <div class="post-meta">
+      <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2006 年 01 月 02 日" }}</time>
+      {{- if and (eq .Type "posts") site.Params.ShowReadingTime }}
+        {{- $characters := strings.RuneCount .Plain }}
+        {{- $readingMinutes := div (add $characters 449) 450 }}
+        <span>约 {{ $readingMinutes }} 分钟阅读</span>
+      {{- end }}
+      {{- with .Params.role }}<span>{{ . }}</span>{{ end }}
+    </div>
+  </header>
+  <div class="post-content">
+    {{- if not (.Param "disableAnchoredHeadings") }}
+      {{- partial "anchored_headings.html" .Content }}
+    {{- else }}{{ .Content }}{{ end }}
+  </div>
+  {{- if eq .Type "posts" }}
+  <footer class="article-end">
+    <p>— END —</p>
+    {{- if (.Param "ShowPostNavLinks") }}{{ partial "post_nav_links.html" . }}{{ end }}
+  </footer>
+  {{- end }}
+</article>
+{{- end }}

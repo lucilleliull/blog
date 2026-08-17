@@ -1,0 +1,12 @@
+{{- define "main" }}
+<header class="index-header compact-header">
+  <p class="eyebrow">FIND AN ARTICLE</p>
+  <h1>搜索</h1>
+</header>
+<div id="searchbox" data-index-url="{{ "index.json" | relLangURL }}">
+  <label for="searchInput">搜索文章</label>
+  <input id="searchInput" autofocus placeholder="输入标题或正文关键词" aria-label="搜索文章" type="search" autocomplete="off" maxlength="64">
+  <p id="searchStatus" class="search-status" aria-live="polite"></p>
+  <ul id="searchResults" aria-label="搜索结果"></ul>
+</div>
+{{- end }}

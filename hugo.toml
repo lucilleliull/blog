@@ -1,7 +1,9 @@
 baseURL = "https://lucille-blog.pages.dev/"
 languageCode = "zh-cn"
-title = "刘露西西 / Lucille"
+defaultContentLanguage = "zh-cn"
+title = "LUCILLE"
 theme = "PaperMod"
+copyright = "© 2026 Lucille"
 
 enableRobotsTXT = true
 [pagination]
@@ -12,23 +14,35 @@ enableRobotsTXT = true
 
 [params]
   env = "production"
+  description = "Lucille 的个人长期出版物：经过时间筛选以后，仍然值得留下来的文章、项目和判断。"
+  author = "Lucille"
+  mainSections = ["posts"]
   defaultTheme = "light"
   disableThemeToggle = true
+  disableScrollToTop = true
 
   ShowReadingTime = true
   ShowWordCount = false
   ShowBreadCrumbs = false
   ShowCodeCopyButtons = true
   ShowPostNavLinks = true
+  ShowRssButtonInSectionTermList = true
+
   ShowToc = false
 
   [params.homeInfoParams]
-    Title = "刘露西西 / Lucille"
-    Content = "你选择的视角就是你想体验的世界"
+    Title = "你选择的视角，就是你想体验的世界。"
+    Content = "一份关于阅读、旅行、投资与真实经验的个人长期出版物。"
 
-  [[params.socialIcons]]
-    name = "rss"
-    url = "/index.xml"
+  [params.label]
+    text = "LUCILLE"
+
+  [params.footer]
+    text = "[RSS](/index.xml) · [归档](/archives/)"
+
+  [params.assets]
+    theme_color = "#f6f4ee"
+    msapplication_TileColor = "#f6f4ee"
 
   [params.fuseOpts]
     isCaseSensitive = false
@@ -46,24 +60,14 @@ enableRobotsTXT = true
     weight = 1
 
   [[menu.main]]
-    name = "标签"
-    url = "/tags/"
+    name = "项目"
+    url = "/projects/"
     weight = 2
-
-  [[menu.main]]
-    name = "搜索"
-    url = "/search/"
-    weight = 3
-
-  [[menu.main]]
-    name = "归档"
-    url = "/archives/"
-    weight = 4
 
   [[menu.main]]
     name = "关于"
     url = "/about/"
-    weight = 5
+    weight = 3
 
 [markup]
   [markup.highlight]
