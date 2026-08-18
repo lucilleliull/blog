@@ -2,7 +2,7 @@
   {{- $pages := where site.RegularPages "Type" "posts" }}
   {{- $count := len $pages }}
   <section class="journal-hero" aria-labelledby="journal-motto">
-    <div class="hero-edition"><span>THE JOURNAL</span><span>EST. 2026</span></div>
+    <div class="hero-edition"><span>(LUCILLE'S JOURNAL)</span><span>EST. 2026</span></div>
     <h1 id="journal-motto">A notebook for<br><em>things worth keeping.</em></h1>
     <p>Essays, field notes, investment theses, and travel journals. Written in Chinese, organised in English, published when they are ready.</p>
     <dl class="hero-facts">
@@ -21,7 +21,7 @@
 
   <section class="journal-section subjects-section" aria-labelledby="subjects-heading">
     <header class="editorial-heading">
-      <p>§ 01 · SUBJECTS</p>
+      <p>(01 · SUBJECTS)</p>
       <h2 id="subjects-heading">Four recurring lines of inquiry.</h2>
       <p class="section-deck">The sections are porous by design. A book can become an investment idea; a trip can become a way of seeing.</p>
     </header>
@@ -35,7 +35,7 @@
 
   <section class="journal-section articles-section" aria-labelledby="latest-articles">
     <header class="editorial-heading split-heading">
-      <div><p>§ 02 · ARTICLES</p><h2 id="latest-articles">The journal — notes kept in public.</h2></div>
+      <div><p>(02 · ARTICLES)</p><h2 id="latest-articles">The journal — notes kept in public.</h2></div>
       <a class="text-link" href="{{ "posts/" | relLangURL }}">ALL ARTICLES ↗</a>
     </header>
     <div class="article-index home-index">
@@ -59,7 +59,7 @@
 
   <section class="journal-section work-section" aria-labelledby="work-heading">
     <header class="editorial-heading split-heading">
-      <div><p>§ 03 · PROJECTS</p><h2 id="work-heading">Where notes become objects.</h2></div>
+      <div><p>(03 · PROJECTS)</p><h2 id="work-heading">Where notes become objects.</h2></div>
       <a class="text-link" href="{{ "projects/" | relLangURL }}">OPEN PROJECTS ↗</a>
     </header>
     {{- $projects := where site.RegularPages "Type" "projects" }}
