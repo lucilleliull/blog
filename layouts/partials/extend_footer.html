@@ -9,10 +9,18 @@
     month: 'short',
     year: 'numeric'
   });
+  const clockFormatter = new Intl.DateTimeFormat('en-GB', {
+    timeZone: 'Asia/Shanghai',
+    hour: '2-digit',
+    minute: '2-digit',
+    second: '2-digit',
+    hour12: false
+  });
 
   const updateXiamenDate = () => {
     const now = new Date();
     const displayDate = formatter.format(now).toUpperCase();
+    const displayTime = clockFormatter.format(now);
     const dateParts = new Intl.DateTimeFormat('en-GB', {
       timeZone: 'Asia/Shanghai',
       year: 'numeric',
@@ -23,13 +31,13 @@
     const machineDate = `${part('year')}-${part('month')}-${part('day')}`;
 
     dateNodes.forEach((node) => {
-      node.textContent = `XIAMEN · ${displayDate}`;
+      node.textContent = `XIAMEN · ${displayDate} · ${displayTime}`;
       node.setAttribute('datetime', machineDate);
     });
   };
 
   updateXiamenDate();
-  window.setInterval(updateXiamenDate, 60000);
+  window.setInterval(updateXiamenDate, 1000);
 })();
 </script>
 <script>

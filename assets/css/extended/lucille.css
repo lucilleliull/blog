@@ -1,3 +1,27 @@
+@font-face {
+  font-family: "Lucille Helvetica Neue";
+  src: url("/fonts/HelveticaNeue-Light.woff2") format("woff2");
+  font-display: swap;
+  font-style: normal;
+  font-weight: 300;
+}
+
+@font-face {
+  font-family: "Lucille Helvetica Neue";
+  src: url("/fonts/HelveticaNeue-Roman.woff2") format("woff2");
+  font-display: swap;
+  font-style: normal;
+  font-weight: 400 600;
+}
+
+@font-face {
+  font-family: "Lucille Helvetica Neue";
+  src: url("/fonts/HelveticaNeue-Bold.woff2") format("woff2");
+  font-display: swap;
+  font-style: normal;
+  font-weight: 700 900;
+}
+
 :root {
   --paper: #f3f0e8;
   --paper-deep: #ebe7dc;
@@ -2244,10 +2268,10 @@ input:focus-visible {
   --signal-pink: #ff73a2;
   --line: rgba(0, 0, 0, 0.28);
   --line-strong: #000;
-  --display: "Archivo", "Arial Black", "Noto Sans SC", Arial, sans-serif;
+  --display: "Archivo", "Arial Black", "Lucille Helvetica Neue", "Noto Sans SC", Arial, sans-serif;
   --serif: "Instrument Serif", "Noto Sans SC", Georgia, serif;
-  --sans: "Noto Sans SC", "Helvetica Neue", Arial, sans-serif;
-  --mono: "IBM Plex Mono", "Arial Narrow", monospace;
+  --sans: "Noto Sans SC", "Lucille Helvetica Neue", "Helvetica Neue", "PingFang SC", Arial, sans-serif;
+  --mono: "IBM Plex Mono", "SFMono-Regular", Menlo, Monaco, Consolas, monospace;
   --site-width: 100%;
   --reading-width: 760px;
   --wide-width: 1120px;
@@ -3970,7 +3994,7 @@ input:focus-visible {
   z-index: 2;
   top: 0;
   right: 0;
-  min-width: 194px;
+  min-width: 278px;
   height: 100%;
   padding: 0 var(--grid-margin) 0 18px;
   display: flex;
@@ -3988,6 +4012,17 @@ input:focus-visible {
   white-space: nowrap;
 }
 
+.site-signal-date::after {
+  content: "LIVE";
+  margin-left: 9px;
+  padding: 3px 5px 2px;
+  border: 1px solid currentColor;
+  color: var(--signal-yellow);
+  font-size: 8px;
+  line-height: 1;
+  animation: live-pulse 1s steps(2, end) infinite;
+}
+
 @keyframes signal-ticker {
   to { transform: translate3d(-50%, 0, 0); }
 }
@@ -3995,6 +4030,11 @@ input:focus-visible {
 @keyframes ticker-heart {
   0%, 49% { transform: translateY(-0.5px) scale(0.78) rotate(-8deg); }
   50%, 100% { transform: translateY(-0.5px) scale(1.08) rotate(5deg); }
+}
+
+@keyframes live-pulse {
+  0%, 49% { opacity: 0.35; }
+  50%, 100% { opacity: 1; }
 }
 
 .micro-icon {
@@ -4096,6 +4136,44 @@ input:focus-visible {
   line-height: 1;
 }
 
+.bilingual-actions {
+  width: max-content;
+  margin-top: 12px;
+  display: flex;
+  align-items: stretch;
+  border: 1px solid var(--ink);
+  background: var(--paper);
+  font-family: var(--mono);
+  font-size: 8px;
+  font-weight: 600;
+  line-height: 1;
+}
+
+.bilingual-actions span,
+.bilingual-actions a {
+  min-height: 26px;
+  padding: 0 8px;
+  display: flex;
+  align-items: center;
+  border-right: 1px solid var(--ink);
+}
+
+.bilingual-actions span {
+  background: var(--signal-yellow);
+}
+
+.bilingual-actions a {
+  text-decoration: none;
+}
+
+.bilingual-actions a:last-child {
+  border-right: 0;
+}
+
+.bilingual-actions a:hover {
+  background: var(--signal-pink);
+}
+
 .post-content-en {
   letter-spacing: -0.025em;
   line-height: 1.72;
@@ -4156,10 +4234,16 @@ input:focus-visible {
   }
 
   .site-signal-date {
-    min-width: 148px;
+    min-width: 205px;
     padding-right: var(--grid-margin);
     padding-left: 10px;
-    font-size: 8px;
+    font-size: 7px;
+  }
+
+  .site-signal-date::after {
+    margin-left: 6px;
+    padding-inline: 4px;
+    font-size: 7px;
   }
 
   .site-noise {
@@ -4182,6 +4266,7 @@ input:focus-visible {
   .site-noise::after,
   .site-signal-track,
   .site-signal-loop i,
+  .site-signal-date::after,
   .micro-icon,
   [data-article-lang] {
     animation: none !important;
