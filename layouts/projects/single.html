@@ -1,0 +1,62 @@
+{{- define "main" }}
+<article class="project-case">
+  <a class="back-link" href="{{ "projects/" | relLangURL }}">← ALL PROJECTS</a>
+
+  <header class="project-hero">
+    <div class="project-hero-copy">
+      <p class="project-kicker">PROJECT · {{ .Params.type_label | upper }} · {{ .Date.Format "2006" }}</p>
+      <h1>{{ .Title }}</h1>
+      <p class="project-deck">{{ .Description }}</p>
+      <div class="project-actions">
+        <a class="project-action-primary" href="{{ .Params.live_url }}" target="_blank" rel="noopener">VISIT THE LIVE SITE <span>↗</span></a>
+        <a href="{{ .Params.article_url | relURL }}">READ THE BUILD NOTE <span>→</span></a>
+      </div>
+    </div>
+    <dl class="project-meta-grid">
+      <div><dt>TYPE</dt><dd>{{ .Params.type_label }}</dd></div>
+      <div><dt>ROLE</dt><dd>{{ .Params.role }}</dd></div>
+      <div><dt>STATUS</dt><dd><i></i>{{ .Params.status }}</dd></div>
+      <div><dt>WITH</dt><dd>{{ .Params.collaborator }}</dd></div>
+    </dl>
+  </header>
+
+  <figure class="project-cover">
+    <a href="{{ .Params.live_url }}" target="_blank" rel="noopener"><img src="{{ .Params.cover_url | relURL }}" alt="{{ .Title }} home page" width="1280" height="613"></a>
+    <figcaption><span>THE LIVE FIELD GUIDE</span><span>TOKYO · 2026</span></figcaption>
+  </figure>
+
+  <dl class="project-numbers" aria-label="Project overview">
+    <div><dt>{{ .Params.places }}</dt><dd>CURATED PLACES</dd></div>
+    <div><dt>{{ .Params.categories }}</dt><dd>CATEGORIES</dd></div>
+    <div><dt>{{ .Params.picks }}</dt><dd>TOP PICKS</dd></div>
+  </dl>
+
+  <section class="project-story">
+    <aside aria-label="Case study sections">
+      <p>CASE STUDY</p>
+      <ol><li>THE PREMISE</li><li>THE PROBLEM</li><li>THE APPROACH</li><li>THE OUTCOME</li></ol>
+    </aside>
+    <div class="project-body">{{ .Content }}</div>
+  </section>
+
+  <section class="project-gallery" aria-labelledby="project-gallery-title">
+    <header><p>§ INTERFACE</p><h2 id="project-gallery-title">A collection made legible.</h2></header>
+    {{- range .Params.gallery }}
+    <figure>
+      <img src="{{ .src | relURL }}" alt="{{ .alt }}" width="{{ .width }}" height="{{ .height }}" loading="lazy">
+      <figcaption>{{ .label }}</figcaption>
+    </figure>
+    {{- end }}
+  </section>
+
+  <footer class="project-link-panel">
+    <p>EXPLORE THE WORK</p>
+    <h2>From a private map<br><em>to a public field guide.</em></h2>
+    <nav aria-label="Project links">
+      <a href="{{ .Params.live_url }}" target="_blank" rel="noopener"><small>01 · EXPERIENCE IT</small><span>VISIT THE LIVE SITE</span><b>↗</b></a>
+      <a href="{{ .Params.article_url | relURL }}"><small>02 · READ THE STORY</small><span>THE BUILD NOTE</span><b>→</b></a>
+      <a href="{{ .Params.source_url }}" target="_blank" rel="noopener"><small>03 · INSPECT THE WORK</small><span>VIEW THE SOURCE</span><b>↗</b></a>
+    </nav>
+  </footer>
+</article>
+{{- end }}

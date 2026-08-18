@@ -2,6 +2,8 @@
 title: "一句话，OpenClaw 帮我定制了一个符合审美的东京旅行网站"
 date: 2026-03-30T12:00:00+08:00
 draft: false
+project_url: "/projects/tokyo-list/"
+project_label: "Lucille & Sun's Tokyo List"
 ---
 
 事情是这样的。

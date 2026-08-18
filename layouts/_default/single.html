@@ -16,6 +16,14 @@
     </div>
   </header>
 
+  {{- with .Params.project_url }}
+  <a class="related-project-callout" href="{{ . }}">
+    <span>RELATED PROJECT</span>
+    <strong>{{ $.Params.project_label | default "See the finished work" }}</strong>
+    <b>VIEW CASE STUDY →</b>
+  </a>
+  {{- end }}
+
   <div class="article-rule"><span>§</span></div>
   <div class="article-layout">
     {{- if and $isArticle (in .TableOfContents "<li>") }}
@@ -29,6 +37,13 @@
       {{- else }}{{ .Content }}{{ end }}
     </div>
   </div>
+
+  {{- with .Params.project_url }}
+  <aside class="article-project-return">
+    <p>FROM NOTE TO OBJECT</p>
+    <a href="{{ . }}"><span>{{ $.Params.project_label | default "See the finished work" }}</span><b>VIEW THE PROJECT →</b></a>
+  </aside>
+  {{- end }}
 
   {{- if $isArticle }}
   <footer class="article-end">

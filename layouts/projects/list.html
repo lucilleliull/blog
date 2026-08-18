@@ -10,16 +10,23 @@
   <section class="project-year">
     <h2>{{ .Key }}</h2>
     {{- range .Pages }}
+    {{- $project := . }}
     <article class="project-row">
       <a href="{{ .RelPermalink }}">
-        {{- with .Resources.GetMatch .Params.cover }}
+        {{- if .Params.cover_url }}
+          <div class="project-row-image"><img src="{{ .Params.cover_url | relURL }}" width="1280" height="613" alt="{{ .Title }} website preview" loading="lazy"><span>{{ .Params.status | default "VIEW PROJECT" }}</span></div>
+        {{- else }}
+          {{- with .Resources.GetMatch .Params.cover }}
           {{- $image := .Fill "1400x800 center webp q82" }}
-          <img src="{{ $image.RelPermalink }}" width="{{ $image.Width }}" height="{{ $image.Height }}" alt="" loading="lazy">
+          <div class="project-row-image"><img src="{{ $image.RelPermalink }}" width="{{ $image.Width }}" height="{{ $image.Height }}" alt="" loading="lazy"><span>{{ $project.Params.status | default "VIEW PROJECT" }}</span></div>
+          {{- end }}
         {{- end }}
-        <div>
+        <div class="project-row-copy">
+          <p class="project-row-kicker">{{ .Params.type_label | default "INDEPENDENT PROJECT" | upper }} · {{ .Date.Format "2006" }}</p>
           <h3>{{ .Title }}</h3>
           {{- with .Description }}<p>{{ . }}</p>{{ end }}
-          {{- with .Params.role }}<span>{{ . }}</span>{{ end }}
+          {{- with .Params.role }}<span class="project-row-role">{{ . | upper }}</span>{{ end }}
+          <b>VIEW CASE STUDY →</b>
         </div>
       </a>
     </article>
