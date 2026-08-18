@@ -4,7 +4,7 @@
   <section class="journal-hero" aria-labelledby="journal-motto">
     <div class="hero-edition"><span>(LUCILLE'S JOURNAL)</span><span>EST. 2026</span></div>
     <h1 id="journal-motto">A notebook for<br><em>things worth keeping.</em></h1>
-    <p>Essays, field notes, investment theses, and travel journals. Written in Chinese, organised in English, published when they are ready.</p>
+    <p>Essays <span class="micro-icon micro-heart" aria-hidden="true">♥</span>, field notes, investment theses, and travel journals. Written in Chinese, organised in English, published when they are ready <span class="micro-icon micro-spark" aria-hidden="true">✦</span>.</p>
     <dl class="hero-facts">
       <div><dt>ENTRIES</dt><dd>{{ printf "%02d" $count }}</dd></div>
       <div><dt>LANGUAGE</dt><dd>中文 · EN</dd></div>
@@ -16,14 +16,14 @@
   <aside class="now-strip" aria-label="Currently">
     <span>CURRENTLY</span>
     {{- with index $pages 0 }}<a href="{{ .RelPermalink }}">Reading · {{ .Title }} <b>↗</b></a>{{ end }}
-    <span>SHANGHAI · {{ now.Format "02 Jan 2006" | upper }}</span>
+    <span>XIAMEN · NOTES IN PUBLIC</span>
   </aside>
 
   <section class="journal-section subjects-section" aria-labelledby="subjects-heading">
     <header class="editorial-heading">
       <p>(01 · SUBJECTS)</p>
       <h2 id="subjects-heading">Four recurring lines of inquiry.</h2>
-      <p class="section-deck">The sections are porous by design. A book can become an investment idea; a trip can become a way of seeing.</p>
+      <p class="section-deck">The sections are porous by design. A book can become an investment idea; a trip can become a way of seeing <span class="micro-icon micro-heart" aria-hidden="true">♥</span>.</p>
     </header>
     <div class="subject-grid">
       <a href="{{ "search/?q=阅读" | relURL }}"><span>01</span><strong>READING</strong><small>Books, notes &amp; ideas</small><i>→</i></a>

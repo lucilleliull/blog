@@ -1,3 +1,37 @@
+<script>
+(() => {
+  const dateNodes = document.querySelectorAll('[data-live-date]');
+  if (!dateNodes.length) return;
+
+  const formatter = new Intl.DateTimeFormat('en-GB', {
+    timeZone: 'Asia/Shanghai',
+    day: '2-digit',
+    month: 'short',
+    year: 'numeric'
+  });
+
+  const updateXiamenDate = () => {
+    const now = new Date();
+    const displayDate = formatter.format(now).toUpperCase();
+    const dateParts = new Intl.DateTimeFormat('en-GB', {
+      timeZone: 'Asia/Shanghai',
+      year: 'numeric',
+      month: '2-digit',
+      day: '2-digit'
+    }).formatToParts(now);
+    const part = (type) => dateParts.find((item) => item.type === type)?.value || '';
+    const machineDate = `${part('year')}-${part('month')}-${part('day')}`;
+
+    dateNodes.forEach((node) => {
+      node.textContent = `XIAMEN · ${displayDate}`;
+      node.setAttribute('datetime', machineDate);
+    });
+  };
+
+  updateXiamenDate();
+  window.setInterval(updateXiamenDate, 60000);
+})();
+</script>
 {{- if eq .Layout "lucille-search" }}
 <script>
 (() => {

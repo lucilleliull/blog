@@ -1,6 +1,14 @@
+<div class="site-noise" aria-hidden="true"></div>
 <aside class="site-signal" aria-label="Journal status">
-  <span>✦ INDEPENDENT JOURNAL · READING / TRAVEL / INVESTING / EXPERIENCE</span>
-  <span>SHANGHAI · {{ now.Format "02 JAN 2006" | upper }}</span>
+  <div class="site-signal-track" aria-hidden="true">
+    <span class="site-signal-loop">
+      <span>INDEPENDENT JOURNAL</span><i>✦</i><span>READING</span><i>♥</i><span>TRAVEL</span><i>✦</i><span>INVESTING</span><i>♥</i><span>EXPERIENCE</span><i>✦</i>
+    </span>
+    <span class="site-signal-loop">
+      <span>INDEPENDENT JOURNAL</span><i>✦</i><span>READING</span><i>♥</i><span>TRAVEL</span><i>✦</i><span>INVESTING</span><i>♥</i><span>EXPERIENCE</span><i>✦</i>
+    </span>
+  </div>
+  <time class="site-signal-date" data-live-date datetime="{{ now.Format "2006-01-02" }}">XIAMEN · {{ now.Format "02 Jan 2006" | upper }}</time>
 </aside>
 <header class="site-header">
   <nav class="site-nav" aria-label="Primary navigation">
