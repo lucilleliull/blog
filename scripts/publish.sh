@@ -3,6 +3,22 @@ set -euo pipefail
 
 git status --porcelain
 
+echo "\nPreparing English translations..."
+CHANGED_ARTICLES=$(git status --porcelain --untracked-files=all content/posts | sed -n 's/^...//p' | grep '/index\.md$' || true)
+if [[ -n "$CHANGED_ARTICLES" ]]; then
+  while IFS= read -r SOURCE; do
+    [[ -n "$SOURCE" && -f "$SOURCE" ]] || continue
+    TRANSLATION="$(dirname "$SOURCE")/translation.md"
+    if [[ -n "$(git status --porcelain -- "$TRANSLATION")" ]]; then
+      echo "Using the English translation already prepared for $SOURCE"
+    else
+      scripts/translate-post.sh "$SOURCE"
+    fi
+  done <<< "$CHANGED_ARTICLES"
+else
+  echo "No new or edited Chinese articles."
+fi
+
 echo "\nRunning hugo build..."
 hugo --minify >/dev/null
 

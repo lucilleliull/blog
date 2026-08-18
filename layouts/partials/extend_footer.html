@@ -32,6 +32,59 @@
   window.setInterval(updateXiamenDate, 60000);
 })();
 </script>
+<script>
+(() => {
+  const article = document.querySelector('[data-bilingual-article]');
+  if (!article) return;
+
+  const buttons = article.querySelectorAll('[data-set-article-lang]');
+  const languageNodes = article.querySelectorAll('[data-article-lang]');
+  const storageKey = 'lucille:article-language';
+  const pageTitleSuffix = ' | LUCILLE';
+
+  const getStoredLanguage = () => {
+    try { return window.localStorage.getItem(storageKey); }
+    catch (_) { return null; }
+  };
+
+  const setStoredLanguage = (language) => {
+    try { window.localStorage.setItem(storageKey, language); }
+    catch (_) {}
+  };
+
+  const setLanguage = (language, updateUrl = false) => {
+    const nextLanguage = language === 'en' ? 'en' : 'zh';
+    article.dataset.lang = nextLanguage;
+    document.documentElement.lang = nextLanguage === 'en' ? 'en' : 'zh-CN';
+
+    languageNodes.forEach((node) => {
+      node.hidden = node.dataset.articleLang !== nextLanguage;
+    });
+
+    buttons.forEach((button) => {
+      button.setAttribute('aria-selected', String(button.dataset.setArticleLang === nextLanguage));
+    });
+
+    const activeTitle = nextLanguage === 'en' ? article.dataset.titleEn : article.dataset.titleZh;
+    if (activeTitle) document.title = activeTitle + pageTitleSuffix;
+    setStoredLanguage(nextLanguage);
+
+    if (updateUrl) {
+      const url = new URL(window.location.href);
+      if (nextLanguage === 'en') url.searchParams.set('lang', 'en');
+      else url.searchParams.delete('lang');
+      window.history.replaceState({}, '', url);
+    }
+  };
+
+  buttons.forEach((button) => {
+    button.addEventListener('click', () => setLanguage(button.dataset.setArticleLang, true));
+  });
+
+  const requestedLanguage = new URLSearchParams(window.location.search).get('lang');
+  setLanguage(requestedLanguage || getStoredLanguage() || 'zh');
+})();
+</script>
 {{- if eq .Layout "lucille-search" }}
 <script>
 (() => {

@@ -28,6 +28,15 @@ hugo server -D
 
 川哥会在仓库里生成/更新 Markdown，然后 commit + push。
 
+## 中英双语
+
+每篇双语文章由同一目录下的两个文件组成：
+
+- `index.md`：中文原稿。
+- `translation.md`：英文版。
+
+文章页面会在同一网址显示“中文 / English”切换，并记住读者的语言选择。使用 `./scripts/publish.sh` 发布新增或修改过的中文文章时，如果没有同时准备英文版，脚本会调用本机已配置的 Hermes 自动翻译后再构建和发布；如果你已经手动修改了英文版，则保留你的版本。
+
 ## 部署
 
 GitHub 保存文章和版本历史；当前 Cloudflare Pages 项目采用 Direct Upload。`./scripts/publish.sh` 会依次完成：
@@ -45,7 +54,7 @@ npx wrangler@latest pages deploy public --project-name lucille-blog --branch mai
 
 ## 内容目录
 
-- `content/posts/<slug>/index.md`：正式文章；同目录可以放文章图片或 PDF。
+- `content/posts/<slug>/index.md`：中文正式文章；同目录的 `translation.md` 是英文版，也可以放文章图片或 PDF。
 - `content/projects/<slug>/index.md`：项目；同目录放代表图和过程图。
 - `content/about/_index.md`：关于页文案。
 - `content-template.md`：最简文章模板。

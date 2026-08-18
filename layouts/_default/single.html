@@ -2,16 +2,36 @@
 {{- $isArticle := eq .Type "posts" }}
 {{- $characters := strings.RuneCount .Plain }}
 {{- $readingMinutes := div (add $characters 449) 450 }}
-<article class="article-page{{ if eq .Type "projects" }} project-single{{ end }}">
+{{- $english := .Resources.GetMatch "translation.md" }}
+{{- $hasEnglish := and $isArticle $english (eq $english.Params.translation_ready true) }}
+{{- $englishReadingMinutes := 0 }}
+{{- if $hasEnglish }}{{ $englishReadingMinutes = div (add $english.WordCount 224) 225 }}{{ end }}
+{{- $zhHasToc := and $isArticle (in .TableOfContents "<li>") }}
+{{- $enHasToc := false }}
+{{- if $hasEnglish }}{{ $enHasToc = in $english.TableOfContents "<li>" }}{{ end }}
+<article class="article-page{{ if eq .Type "projects" }} project-single{{ end }}"{{ if $hasEnglish }} data-bilingual-article data-lang="zh" data-title-zh="{{ .Title }}" data-title-en="{{ $english.Title }}"{{ end }}>
   <a class="back-link" href="{{ if $isArticle }}{{ "posts/" | relLangURL }}{{ else }}{{ "projects/" | relLangURL }}{{ end }}">← {{ if $isArticle }}ALL ARTICLES{{ else }}ALL PROJECTS{{ end }}</a>
   <header class="article-header">
-    <p class="article-kind">{{ if $isArticle }}ESSAY · 中文{{ else }}PROJECT{{ end }}</p>
-    <h1>{{ .Title }}</h1>
-    {{- with .Description }}<p class="article-deck">{{ . }}</p>{{ end }}
+    <p class="article-kind"{{ if $hasEnglish }} data-article-lang="zh" lang="zh-CN"{{ end }}>{{ if $isArticle }}ESSAY · 中文{{ else }}PROJECT{{ end }}</p>
+    {{- if $hasEnglish }}
+    <p class="article-kind" data-article-lang="en" lang="en" hidden>ESSAY · ENGLISH</p>
+    <div class="article-language-bar">
+      <span>READ IN</span>
+      <div class="article-language-tabs" role="tablist" aria-label="文章语言 / Article language">
+        <button type="button" role="tab" data-set-article-lang="zh" aria-selected="true" lang="zh-CN">中文</button>
+        <button type="button" role="tab" data-set-article-lang="en" aria-selected="false" lang="en">English</button>
+      </div>
+    </div>
+    {{- end }}
+    <h1{{ if $hasEnglish }} data-article-lang="zh" lang="zh-CN"{{ end }}>{{ .Title }}</h1>
+    {{- if $hasEnglish }}<h1 data-article-lang="en" lang="en" hidden>{{ $english.Title }}</h1>{{ end }}
+    {{- with .Description }}<p class="article-deck"{{ if $hasEnglish }} data-article-lang="zh" lang="zh-CN"{{ end }}>{{ . }}</p>{{ end }}
+    {{- if $hasEnglish }}{{ with $english.Params.description }}<p class="article-deck" data-article-lang="en" lang="en" hidden>{{ . }}</p>{{ end }}{{ end }}
     <div class="article-meta">
       <span>BY LUCILLE</span>
       <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "02 January 2006" | upper }}</time>
-      {{- if $isArticle }}<span>{{ $readingMinutes }} MIN READ</span>{{ end }}
+      {{- if $isArticle }}<span{{ if $hasEnglish }} data-article-lang="zh" lang="zh-CN"{{ end }}>{{ $readingMinutes }} MIN READ</span>{{ end }}
+      {{- if $hasEnglish }}<span data-article-lang="en" lang="en" hidden>{{ $english.WordCount | lang.FormatNumber 0 }} WORDS · {{ $englishReadingMinutes }} MIN READ</span>{{ end }}
       {{- with .Params.role }}<span>{{ . | upper }}</span>{{ end }}
     </div>
   </header>
@@ -26,16 +46,24 @@
 
   <div class="article-rule"><span>§</span></div>
   <div class="article-layout">
-    {{- if and $isArticle (in .TableOfContents "<li>") }}
+    {{- if or $zhHasToc $enHasToc }}
     <aside class="article-toc">
-      <div><p>ON THIS PAGE</p>{{ .TableOfContents }}</div>
+      {{- if $zhHasToc }}<div{{ if $hasEnglish }} data-article-lang="zh" lang="zh-CN"{{ end }}><p>本页目录</p>{{ .TableOfContents | replaceRE `id="TableOfContents"` `id="TableOfContents-zh"` | safeHTML }}</div>{{ end }}
+      {{- if $enHasToc }}<div data-article-lang="en" lang="en" hidden><p>ON THIS PAGE</p>{{ $english.TableOfContents | replaceRE `id="TableOfContents"` `id="TableOfContents-en"` | safeHTML }}</div>{{ end }}
     </aside>
     {{- end }}
-    <div class="post-content">
+    <div class="post-content"{{ if $hasEnglish }} data-article-lang="zh" lang="zh-CN"{{ end }}>
       {{- if not (.Param "disableAnchoredHeadings") }}
         {{- partial "anchored_headings.html" .Content }}
       {{- else }}{{ .Content }}{{ end }}
     </div>
+    {{- if $hasEnglish }}
+    <div class="post-content post-content-en" data-article-lang="en" lang="en" hidden>
+      {{- if not (.Param "disableAnchoredHeadings") }}
+        {{- partial "anchored_headings.html" $english.Content }}
+      {{- else }}{{ $english.Content }}{{ end }}
+    </div>
+    {{- end }}
   </div>
 
   {{- with .Params.project_url }}

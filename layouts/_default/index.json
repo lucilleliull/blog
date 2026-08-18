@@ -1,0 +1,16 @@
+{{- $.Scratch.Add "index" slice -}}
+{{- range site.RegularPages -}}
+  {{- if and (not .Params.searchHidden) (ne .Layout `archives`) (ne .Layout `search`) -}}
+    {{- $title := .Title -}}
+    {{- $content := .Plain -}}
+    {{- $summary := .Summary -}}
+    {{- $translation := .Resources.GetMatch "translation.md" -}}
+    {{- if and $translation (eq $translation.Params.translation_ready true) -}}
+      {{- $title = printf "%s %s" $title $translation.Title -}}
+      {{- $content = printf "%s %s" $content $translation.Plain -}}
+      {{- with $translation.Params.description }}{{ $summary = printf "%s %s" $summary . }}{{ end -}}
+    {{- end -}}
+    {{- $.Scratch.Add "index" (dict "title" $title "content" $content "permalink" .Permalink "summary" $summary) -}}
+  {{- end -}}
+{{- end -}}
+{{- $.Scratch.Get "index" | jsonify -}}

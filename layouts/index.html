@@ -48,6 +48,8 @@
           <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "Jan 02" | upper }}</time>
           <div>
             <a class="article-title" href="{{ .RelPermalink }}"><span>{{ .Title }}</span><b>→</b></a>
+            {{- $translation := .Resources.GetMatch "translation.md" }}
+            {{- if and $translation (eq $translation.Params.translation_ready true) }}<small class="bilingual-badge">中文 / EN</small>{{ end }}
           </div>
         </li>
         {{- end }}
