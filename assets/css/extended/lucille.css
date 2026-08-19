@@ -3890,7 +3890,7 @@ input:focus-visible {
   inset: -1rem;
   overflow: hidden;
   pointer-events: none;
-  opacity: 0.18;
+  opacity: 0.22;
   mix-blend-mode: multiply;
 }
 
@@ -3902,7 +3902,9 @@ input:focus-visible {
   background-position: 50%;
   background-size: 180px 180px;
   will-change: transform;
-  animation: lucille-noise 1.75s steps(2, end) infinite;
+  animation:
+    lucille-noise 1.75s steps(2, end) infinite,
+    lucille-grain-flicker 0.32s steps(2, end) infinite;
 }
 
 .site-noise::after {
@@ -3921,6 +3923,11 @@ input:focus-visible {
   80% { transform: translate3d(-0.9rem, 0.1rem, 0); }
   90% { transform: translate3d(0.6rem, -0.5rem, 0); }
   100% { transform: translate3d(-0.7rem, 0, 0); }
+}
+
+@keyframes lucille-grain-flicker {
+  0%, 49% { opacity: 0.68; }
+  50%, 100% { opacity: 1; }
 }
 
 .site-signal {
@@ -4328,6 +4335,32 @@ input:focus-visible {
 
   .heart-sequence > span:nth-child(even)::after {
     opacity: 1;
+  }
+
+  /* These are intentional brand signals, so keep them alive even when the
+     host browser advertises reduced motion. Their movement stays continuous
+     and low-amplitude rather than using large entrance transitions. */
+  .site-signal-track {
+    transform: translate3d(0, 0, 0);
+    animation: signal-ticker 18s linear infinite !important;
+  }
+
+  .site-noise {
+    opacity: 0.18;
+  }
+
+  .site-noise::before {
+    animation:
+      lucille-noise 2.2s steps(2, end) infinite,
+      lucille-grain-flicker 0.4s steps(2, end) infinite !important;
+  }
+
+  .site-signal-date::after {
+    animation: live-pulse 1s steps(2, end) infinite !important;
+  }
+
+  .heart-sequence > span::after {
+    animation: heart-sequence-fill 3.2s steps(1, end) infinite !important;
   }
 }
 
