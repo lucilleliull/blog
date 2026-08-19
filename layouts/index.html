@@ -4,7 +4,7 @@
   <section class="journal-hero" aria-labelledby="journal-motto">
     <div class="hero-edition"><span>(LUCILLE'S JOURNAL)</span><span>EST. 2026</span></div>
     <h1 id="journal-motto">A notebook for<br><em>things worth keeping.</em></h1>
-    <p>Essays <span class="heart-sequence" aria-hidden="true"><span>♡</span><span>♡</span><span>♡</span><span>♡</span><span>♡</span></span>, field notes, investment theses, and travel journals. Written in Chinese, organised in English, published when they are ready.</p>
+    <p>Essays, field notes, investment theses, and travel journals. Written in Chinese, organised in English, published when they are ready.</p>
     <dl class="hero-facts">
       <div><dt>ENTRIES</dt><dd>{{ printf "%02d" $count }}</dd></div>
       <div><dt>LANGUAGE</dt><dd>中文 · EN</dd></div>
@@ -19,6 +19,14 @@
     <span>XIAMEN · NOTES IN PUBLIC</span>
   </aside>
 
+  <div class="heart-divider" aria-hidden="true">
+    <span class="heart-divider-stack">
+      <svg viewBox="0 0 24 24"><path d="M12 21S4.56 16.62 2.32 12.47C.27 8.68 2.18 4.5 6.44 4.5c2.38 0 4.27 1.48 5.56 3.12 1.29-1.64 3.18-3.12 5.56-3.12 4.26 0 6.17 4.18 4.12 7.97C19.44 16.62 12 21 12 21Z"/></svg>
+      <svg viewBox="0 0 24 24"><path d="M12 21S4.56 16.62 2.32 12.47C.27 8.68 2.18 4.5 6.44 4.5c2.38 0 4.27 1.48 5.56 3.12 1.29-1.64 3.18-3.12 5.56-3.12 4.26 0 6.17 4.18 4.12 7.97C19.44 16.62 12 21 12 21Z"/></svg>
+      <svg viewBox="0 0 24 24"><path d="M12 21S4.56 16.62 2.32 12.47C.27 8.68 2.18 4.5 6.44 4.5c2.38 0 4.27 1.48 5.56 3.12 1.29-1.64 3.18-3.12 5.56-3.12 4.26 0 6.17 4.18 4.12 7.97C19.44 16.62 12 21 12 21Z"/></svg>
+    </span>
+  </div>
+
   <section class="journal-section subjects-section" aria-labelledby="subjects-heading">
     <header class="editorial-heading">
       <p>(01 · SUBJECTS)</p>
@@ -26,17 +34,17 @@
       <p class="section-deck">The sections are porous by design. A book can become an investment idea; a trip can become a way of seeing.</p>
     </header>
     <div class="subject-grid">
-      <a href="{{ "search/?q=阅读" | relURL }}"><span>01</span><strong>READING</strong><small>Books, notes &amp; ideas</small><i>→</i></a>
-      <a href="{{ "search/?q=旅行" | relURL }}"><span>02</span><strong>TRAVEL</strong><small>Places, routes &amp; ways of living</small><i>→</i></a>
-      <a href="{{ "search/?q=投资" | relURL }}"><span>03</span><strong>INVESTING</strong><small>Markets, capital &amp; judgment</small><i>→</i></a>
-      <a href="{{ "search/?q=体验" | relURL }}"><span>04</span><strong>EXPERIENCE</strong><small>Attention, taste &amp; the examined life</small><i>→</i></a>
+      <a href="{{ "search/?q=阅读" | relURL }}"><span>01</span><strong>READING</strong><small>Books, notes &amp; ideas</small><i class="motion-arrow"></i></a>
+      <a href="{{ "search/?q=旅行" | relURL }}"><span>02</span><strong>TRAVEL</strong><small>Places, routes &amp; ways of living</small><i class="motion-arrow"></i></a>
+      <a href="{{ "search/?q=投资" | relURL }}"><span>03</span><strong>INVESTING</strong><small>Markets, capital &amp; judgment</small><i class="motion-arrow"></i></a>
+      <a href="{{ "search/?q=体验" | relURL }}"><span>04</span><strong>EXPERIENCE</strong><small>Attention, taste &amp; the examined life</small><i class="motion-arrow"></i></a>
     </div>
   </section>
 
   <section class="journal-section articles-section" aria-labelledby="latest-articles">
     <header class="editorial-heading split-heading">
       <div><p>(02 · ARTICLES)</p><h2 id="latest-articles">The journal — notes kept in public.</h2></div>
-      <a class="text-link" href="{{ "posts/" | relLangURL }}">ALL ARTICLES ↗</a>
+      <a class="text-link motion-link" href="{{ "posts/" | relLangURL }}">ALL ARTICLES</a>
     </header>
     <div class="article-index home-index">
     {{- range $pages.GroupByDate "2006" }}
@@ -68,14 +76,14 @@
   <section class="journal-section work-section" aria-labelledby="work-heading">
     <header class="editorial-heading split-heading">
       <div><p>(03 · PROJECTS)</p><h2 id="work-heading">Where notes become objects.</h2></div>
-      <a class="text-link" href="{{ "projects/" | relLangURL }}">OPEN PROJECTS ↗</a>
+      <a class="text-link motion-link" href="{{ "projects/" | relLangURL }}">OPEN PROJECTS</a>
     </header>
     {{- $projects := where site.RegularPages "Type" "projects" }}
     {{- range first 1 $projects }}
     <article class="featured-project">
       <a class="featured-project-media" href="{{ .RelPermalink }}" aria-label="View {{ .Title }} project">
-        <img src="{{ .Params.cover_url | relURL }}" alt="{{ .Title }} website preview" width="1280" height="613" loading="lazy">
-        <span>VIEW CASE STUDY <b>↗</b></span>
+        <img src="{{ .Params.cover_url | relURL }}" alt="{{ .Title }} website preview" width="1280" height="613" loading="eager" fetchpriority="high" decoding="async">
+        <span class="motion-link">VIEW CASE STUDY</span>
       </a>
       <div class="featured-project-copy">
         <p class="featured-project-kicker">FEATURED · {{ .Params.type_label | default "INDEPENDENT PROJECT" | upper }}</p>
@@ -87,8 +95,8 @@
           <div><dt>TOP PICKS</dt><dd>{{ .Params.picks }}</dd></div>
         </dl>
         <div class="featured-project-actions">
-          <a href="{{ .RelPermalink }}">CASE STUDY <span>→</span></a>
-          <a href="{{ .Params.live_url }}" target="_blank" rel="noopener">LIVE SITE <span>↗</span></a>
+          <a class="motion-link" href="{{ .RelPermalink }}">CASE STUDY</a>
+          <a class="motion-link" href="{{ .Params.live_url }}" target="_blank" rel="noopener">LIVE SITE</a>
         </div>
       </div>
     </article>
