@@ -3,7 +3,7 @@
   {{- $count := len $pages }}
   <section class="journal-hero" aria-labelledby="journal-motto">
     <div class="hero-edition"><span>(LUCILLE'S JOURNAL)</span><span>EST. 2026</span></div>
-    <h1 id="journal-motto">A notebook for<br><em>things worth keeping.</em></h1>
+    <h1 id="journal-motto"><span class="hero-title-line">A notebook for</span><em><span>things worth</span> <span>keeping.</span></em></h1>
     <p>Essays, field notes, investment theses, and travel journals. Written in Chinese, organised in English, published when they are ready.</p>
     <dl class="hero-facts">
       <div><dt>ENTRIES</dt><dd>{{ printf "%02d" $count }}</dd></div>
@@ -59,9 +59,8 @@
             {{- $translation := .Resources.GetMatch "translation.md" }}
             {{- if and $translation (eq $translation.Params.translation_ready true) }}
             <div class="bilingual-actions" aria-label="Choose article language">
-              <span>READ IN</span>
-              <a href="{{ .RelPermalink }}" lang="zh-CN">中文</a>
-              <a href="{{ .RelPermalink }}?lang=en" lang="en">ENGLISH</a>
+              <a href="{{ .RelPermalink }}" lang="zh-CN">中</a>
+              <a href="{{ .RelPermalink }}?lang=en" lang="en">EN</a>
             </div>
             {{- end }}
           </div>

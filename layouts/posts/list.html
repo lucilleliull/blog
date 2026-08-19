@@ -1,6 +1,6 @@
 {{- define "main" }}
 {{- $pages := .RegularPagesRecursive }}
-<header class="journal-page-header">
+<header class="journal-page-header articles-header">
   <p class="section-number">(ARTICLES)</p>
   <h1>The journal —<br><em>notes kept in public.</em></h1>
   <div class="page-intro">
@@ -8,7 +8,7 @@
     <p>{{ len $pages }} ENTRIES · SINCE 2026 · <a href="{{ "index.xml" | relLangURL }}">RSS ↗</a></p>
   </div>
 </header>
-<section class="article-index full-index" aria-label="All articles">
+<section class="article-index full-index articles-list" aria-label="All articles">
   {{- range $pages.GroupByDate "2006" }}
   <section class="year-group" aria-labelledby="year-{{ .Key }}">
     <header><h2 id="year-{{ .Key }}">{{ .Key }}</h2><span>{{ len .Pages }} ARTICLES</span></header>
@@ -20,7 +20,7 @@
           <a class="article-title" href="{{ .RelPermalink }}"><span>{{ .Title }}</span><b>→</b></a>
           {{- with .Description }}<p>{{ . }}</p>{{ end }}
           {{- $translation := .Resources.GetMatch "translation.md" }}
-          {{- if and $translation (eq $translation.Params.translation_ready true) }}<small class="bilingual-badge">中文 / EN</small>{{ end }}
+          {{- if and $translation (eq $translation.Params.translation_ready true) }}<small class="bilingual-badge">中 / EN</small>{{ end }}
         </div>
       </li>
       {{- end }}
