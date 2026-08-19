@@ -3890,7 +3890,7 @@ input:focus-visible {
   inset: -1rem;
   overflow: hidden;
   pointer-events: none;
-  opacity: 0.3;
+  opacity: 0.46;
   mix-blend-mode: multiply;
 }
 
@@ -3900,12 +3900,13 @@ input:focus-visible {
   inset: 0;
   background-image: url("/assets/lucille-noise.svg");
   background-position: 50%;
-  background-size: 120px 120px;
-  filter: contrast(1.35);
+  background-size: 68px 68px;
+  filter: contrast(1.7);
+  opacity: 0.88;
   will-change: transform;
   animation:
-    lucille-noise 1.75s steps(2, end) infinite,
-    lucille-grain-flicker 0.18s steps(2, end) infinite;
+    lucille-noise 0.34s steps(2, end) infinite,
+    lucille-grain-flicker 0.13s steps(2, end) infinite;
 }
 
 .site-noise::after {
@@ -3914,13 +3915,13 @@ input:focus-visible {
   inset: -1rem;
   background-image: url("/assets/lucille-noise.svg");
   background-position: 15% 35%;
-  background-size: 82px 82px;
-  filter: contrast(1.55);
-  opacity: 0.42;
+  background-size: 43px 43px;
+  filter: contrast(1.9);
+  opacity: 0.62;
   will-change: transform, opacity;
   animation:
-    lucille-noise-secondary 0.42s steps(2, end) infinite,
-    lucille-grain-flicker 0.24s steps(2, end) infinite reverse;
+    lucille-noise-secondary 0.2s steps(2, end) infinite,
+    lucille-grain-flicker 0.17s steps(2, end) infinite reverse;
 }
 
 @keyframes lucille-noise {
@@ -3938,7 +3939,7 @@ input:focus-visible {
 }
 
 @keyframes lucille-grain-flicker {
-  0%, 49% { opacity: 0.38; }
+  0%, 49% { opacity: 0.62; }
   50%, 100% { opacity: 1; }
 }
 
@@ -4100,19 +4101,20 @@ input:focus-visible {
 .heart-divider-stack {
   display: flex;
   flex-direction: column;
-  gap: 1px;
+  gap: 0;
   color: var(--ink);
 }
 
 .heart-divider-stack svg {
-  width: 23px;
-  height: 22px;
+  width: 18px;
+  height: 18px;
   overflow: visible;
   fill: transparent;
   stroke: currentColor;
-  stroke-width: 2.25;
+  stroke-width: 2.1;
   stroke-linecap: round;
-  stroke-linejoin: round;
+  stroke-linejoin: miter;
+  stroke-miterlimit: 4;
   animation: vertical-heart-signal 2.4s steps(1, end) infinite;
 }
 
@@ -4136,16 +4138,61 @@ input:focus-visible {
   height: 0;
   flex: 0 0 auto;
   display: inline-block;
-  border-top: 6px solid transparent;
-  border-bottom: 6px solid transparent;
-  border-left: 8px solid currentColor;
+  border-top: 5px solid transparent;
+  border-bottom: 5px solid transparent;
+  border-left: 7px solid currentColor;
   content: "";
   animation: motion-arrow-nudge 1.15s steps(3, end) infinite;
 }
 
 @keyframes motion-arrow-nudge {
-  0%, 38%, 100% { transform: translateX(0); }
-  48%, 78% { transform: translateX(5px); }
+  0%, 38%, 100% { transform: translate3d(0, -1px, 0); }
+  48%, 78% { transform: translate3d(5px, -1px, 0); }
+}
+
+@keyframes motion-arrow-nudge-back {
+  0%, 38%, 100% { transform: translate3d(0, -1px, 0); }
+  48%, 78% { transform: translate3d(-5px, -1px, 0); }
+}
+
+.motion-arrow-back {
+  border-right: 7px solid currentColor;
+  border-left: 0;
+  animation-name: motion-arrow-nudge-back;
+}
+
+.article-title .motion-arrow {
+  margin: 0 4px 0 16px;
+  border-top-width: 4px;
+  border-bottom-width: 4px;
+  border-left-width: 6px;
+  color: var(--ink);
+}
+
+.project-row-copy > b.motion-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+}
+
+.related-project-callout b.motion-link,
+.article-project-return b.motion-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+}
+
+.article-navigation .motion-arrow {
+  align-self: end;
+  margin: 0 5px 4px 14px;
+  border-top-width: 4px;
+  border-bottom-width: 4px;
+  border-left-width: 6px;
+}
+
+.article-navigation .motion-arrow-back {
+  border-right-width: 6px;
+  border-left-width: 0;
 }
 
 .subject-grid {
@@ -4155,8 +4202,9 @@ input:focus-visible {
 }
 
 .subject-grid a {
-  min-height: 198px;
-  padding: 18px;
+  position: relative;
+  min-height: 220px;
+  padding: 20px;
   grid-template-columns: minmax(0, 1fr) auto;
   grid-template-rows: auto 1fr auto;
 }
@@ -4176,40 +4224,34 @@ input:focus-visible {
 .subject-grid strong {
   grid-column: 1 / -1;
   align-self: center;
-  font-size: clamp(27px, 2.45vw, 36px);
+  justify-self: center;
+  font-family: var(--display);
+  font-size: clamp(30px, 2.5vw, 38px);
+  font-style: normal;
+  font-weight: 900;
+  letter-spacing: -0.055em;
   line-height: 0.94;
-}
-
-.subject-grid a:nth-child(2) strong {
-  font-family: var(--serif);
-  font-size: clamp(34px, 3.1vw, 46px);
-  font-style: italic;
-  font-weight: 400;
-  letter-spacing: -0.035em;
-  text-transform: none;
-}
-
-.subject-grid a:nth-child(3) strong {
-  font-family: var(--mono);
-  font-size: clamp(22px, 2vw, 30px);
-  font-weight: 600;
-  letter-spacing: -0.045em;
-}
-
-.subject-grid a:nth-child(4) strong {
-  font-size: clamp(25px, 2.25vw, 33px);
+  text-align: center;
+  text-transform: uppercase;
 }
 
 .subject-grid small {
-  grid-column: 1;
+  grid-column: 1 / -1;
   align-self: end;
+  justify-self: center;
+  max-width: 26ch;
+  padding: 0 12px;
+  font-family: var(--mono);
+  font-size: clamp(9px, 0.72vw, 11px);
+  font-weight: 500;
+  line-height: 1.35;
+  text-align: center;
 }
 
 .subject-grid .motion-arrow {
-  grid-column: 2;
-  align-self: end;
-  justify-self: end;
-  margin: 0 4px 1px 0;
+  position: absolute;
+  right: 18px;
+  bottom: 18px;
   color: currentColor;
   font-size: inherit;
 }
@@ -4434,16 +4476,16 @@ input:focus-visible {
   }
 
   .site-noise {
-    opacity: 0.24;
+    opacity: 0.44;
   }
 
   .heart-divider {
-    min-height: 130px;
+    min-height: 116px;
   }
 
   .heart-divider-stack svg {
-    width: 21px;
-    height: 20px;
+    width: 16px;
+    height: 16px;
   }
 
   .subject-grid {
@@ -4452,8 +4494,8 @@ input:focus-visible {
 
   .subject-grid a,
   .subject-grid a:nth-child(2n) {
-    min-height: 145px;
-    padding: 15px;
+    min-height: 190px;
+    padding: 16px 18px 20px;
     border-right: 0;
     border-bottom: 1px solid var(--ink);
   }
@@ -4463,32 +4505,52 @@ input:focus-visible {
   }
 
   .subject-grid strong {
-    font-size: clamp(30px, 9.5vw, 38px);
+    font-size: clamp(40px, 12vw, 50px);
   }
 
-  .subject-grid a:nth-child(2) strong {
-    font-size: clamp(34px, 11vw, 42px);
+  .subject-grid small {
+    max-width: 28ch;
+    padding-inline: 22px;
+    font-size: 10px;
   }
 
-  .subject-grid a:nth-child(3) strong {
-    font-size: clamp(20px, 7vw, 27px);
-  }
-
-  .subject-grid a:nth-child(4) strong {
-    font-size: clamp(27px, 9vw, 35px);
+  .subject-grid .motion-arrow {
+    right: 18px;
+    bottom: 20px;
   }
 
   .journal-hero h1 {
-    font-size: clamp(35px, 11vw, 50px);
-    line-height: 0.9;
+    width: 100%;
+    max-width: none;
+    margin: clamp(44px, 12svh, 72px) 0 40px;
+    font-size: clamp(28px, 9vw, 42px);
+    line-height: 0.92;
+    letter-spacing: -0.045em;
   }
 
   .journal-hero h1 em {
-    margin-top: 7px;
+    margin-top: 9px;
+    font-size: clamp(42px, 13.5vw, 58px);
+    line-height: 0.82;
   }
 
   .journal-hero h1 em span {
     display: block;
+  }
+
+  .split-heading .text-link.motion-link {
+    min-height: 62px;
+    padding: 0 22px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+  }
+
+  .article-title .motion-arrow {
+    align-self: center;
+    margin-right: 2px;
+    margin-left: 12px;
   }
 
   .article-language-bar {
@@ -4528,20 +4590,18 @@ input:focus-visible {
     animation: signal-ticker 18s linear infinite !important;
   }
 
-  .site-noise {
-    opacity: 0.26;
-  }
+  .site-noise { opacity: 0.44; }
 
   .site-noise::before {
     animation:
-      lucille-noise 2.2s steps(2, end) infinite,
-      lucille-grain-flicker 0.24s steps(2, end) infinite !important;
+      lucille-noise 0.34s steps(2, end) infinite,
+      lucille-grain-flicker 0.13s steps(2, end) infinite !important;
   }
 
   .site-noise::after {
     animation:
-      lucille-noise-secondary 0.52s steps(2, end) infinite,
-      lucille-grain-flicker 0.3s steps(2, end) infinite reverse !important;
+      lucille-noise-secondary 0.2s steps(2, end) infinite,
+      lucille-grain-flicker 0.17s steps(2, end) infinite reverse !important;
   }
 
   .site-signal-date::after {

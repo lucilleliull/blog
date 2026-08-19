@@ -11,7 +11,7 @@
     <header><h2>{{ .Key }}</h2><span>{{ len .Pages }} ARTICLES</span></header>
     <ol>
       {{- range .Pages }}
-      <li><time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "Jan 02" | upper }}</time><div><a class="article-title" href="{{ .RelPermalink }}"><span>{{ .Title }}</span><b>→</b></a></div></li>
+      <li><time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "Jan 02" | upper }}</time><div><a class="article-title" href="{{ .RelPermalink }}"><span>{{ .Title }}</span><b class="motion-arrow" aria-hidden="true"></b></a></div></li>
       {{- end }}
     </ol>
   </section>

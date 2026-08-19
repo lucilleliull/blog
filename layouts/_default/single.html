@@ -39,7 +39,7 @@
   <a class="related-project-callout" href="{{ . }}">
     <span>RELATED PROJECT</span>
     <strong>{{ $.Params.project_label | default "See the finished work" }}</strong>
-    <b>VIEW CASE STUDY →</b>
+    <b class="motion-link">VIEW CASE STUDY</b>
   </a>
   {{- end }}
 
@@ -68,7 +68,7 @@
   {{- with .Params.project_url }}
   <aside class="article-project-return">
     <p>FROM NOTE TO OBJECT</p>
-    <a href="{{ . }}"><span>{{ $.Params.project_label | default "See the finished work" }}</span><b>VIEW THE PROJECT →</b></a>
+    <a href="{{ . }}"><span>{{ $.Params.project_label | default "See the finished work" }}</span><b class="motion-link">VIEW THE PROJECT</b></a>
   </aside>
   {{- end }}
 
@@ -79,8 +79,8 @@
       <span>Published in the journal · {{ .Date.Format "2006" }} · Lucille</span>
     </div>
     <nav class="article-navigation" aria-label="Article navigation">
-      {{- with .PrevInSection }}<a href="{{ .RelPermalink }}"><small>PREVIOUS</small><span>{{ .Title }}</span><b>←</b></a>{{ end }}
-      {{- with .NextInSection }}<a href="{{ .RelPermalink }}"><small>NEXT</small><span>{{ .Title }}</span><b>→</b></a>{{ end }}
+      {{- with .PrevInSection }}<a href="{{ .RelPermalink }}"><small>PREVIOUS</small><span>{{ .Title }}</span><b class="motion-arrow motion-arrow-back" aria-hidden="true"></b></a>{{ end }}
+      {{- with .NextInSection }}<a href="{{ .RelPermalink }}"><small>NEXT</small><span>{{ .Title }}</span><b class="motion-arrow" aria-hidden="true"></b></a>{{ end }}
     </nav>
   </footer>
   {{- end }}
