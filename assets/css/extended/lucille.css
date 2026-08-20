@@ -4471,6 +4471,25 @@ input:focus-visible {
   margin-top: -0.04em;
 }
 
+/* Search results need their own readable vertical rhythm, especially for long
+   Chinese titles that wrap to two or three lines on narrow screens. */
+#searchResults li {
+  min-width: 0;
+  padding-top: 26px;
+  padding-bottom: 26px;
+}
+
+#searchResults a {
+  position: static;
+  display: block;
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  line-height: 1.18;
+  overflow-wrap: anywhere;
+  text-wrap: pretty;
+}
+
 @media (max-width: 760px) {
   .site-signal-track {
     animation-duration: 14s;
@@ -4584,6 +4603,31 @@ input:focus-visible {
   .article-language-tabs button {
     padding-right: 10px;
     padding-left: 10px;
+  }
+
+  #searchbox {
+    padding-top: 64px;
+    padding-bottom: 84px;
+  }
+
+  #searchInput {
+    font-size: clamp(26px, 8vw, 34px);
+    letter-spacing: -0.045em;
+    line-height: 1.08;
+  }
+
+  #searchResults {
+    margin-top: 36px;
+  }
+
+  #searchResults li {
+    padding: 24px 0 26px;
+  }
+
+  #searchResults a {
+    font-size: clamp(20px, 5.8vw, 24px);
+    line-height: 1.26;
+    letter-spacing: -0.025em;
   }
 }
 
