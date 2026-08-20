@@ -4447,6 +4447,30 @@ input:focus-visible {
   white-space: nowrap;
 }
 
+/* Li Xiaolai-inspired editorial rhythm: the homepage statement is a deliberate
+   three-line composition at every viewport, never a single oversized row. */
+.journal-hero h1 {
+  width: min(100%, 980px);
+  max-width: none;
+  margin-top: clamp(46px, 7vh, 72px);
+  margin-bottom: clamp(54px, 8vh, 82px);
+  font-size: clamp(68px, 7.6vw, 116px);
+  line-height: 0.8;
+}
+
+.journal-hero h1 em {
+  margin-top: 0.08em;
+  line-height: 0.84;
+}
+
+.journal-hero h1 em span {
+  display: block;
+}
+
+.journal-hero h1 em span + span {
+  margin-top: -0.04em;
+}
+
 @media (max-width: 760px) {
   .site-signal-track {
     animation-duration: 14s;
