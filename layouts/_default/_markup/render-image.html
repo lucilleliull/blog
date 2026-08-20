@@ -7,10 +7,7 @@
     {{- $resourcePath := strings.TrimPrefix "./" .Destination }}
     {{- with .Page.Resources.GetMatch $resourcePath }}
       {{- if strings.HasPrefix .MediaType.Type "image/" }}
-        {{- $original := .RelPermalink }}
-        {{- $large := .Resize "1440x webp q84" }}
-        {{- $small := .Resize "760x webp q82" }}
-        <img loading="lazy" src="{{ $original }}" srcset="{{ $small.RelPermalink }} {{ $small.Width }}w, {{ $large.RelPermalink }} {{ $large.Width }}w" sizes="(max-width: 760px) 100vw, 720px" width="{{ $large.Width }}" height="{{ $large.Height }}" alt="{{ $alt }}" onerror="this.onerror=null;this.removeAttribute('srcset');this.src='{{ $original }}'"{{ with $.Title }} title="{{ . }}"{{ end }}>
+        <img loading="lazy" decoding="async" src="{{ .RelPermalink }}" width="{{ .Width }}" height="{{ .Height }}" alt="{{ $alt }}"{{ with $.Title }} title="{{ . }}"{{ end }}>
       {{- else }}<a href="{{ .RelPermalink }}">{{ $alt }}</a>{{ end }}
     {{- else }}<img loading="lazy" src="{{ .Destination | safeURL }}" alt="{{ $alt }}">{{ end }}
   {{- end }}
