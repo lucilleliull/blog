@@ -4455,11 +4455,13 @@ input:focus-visible {
   margin-top: clamp(46px, 7vh, 72px);
   margin-bottom: clamp(54px, 8vh, 82px);
   font-size: clamp(68px, 7.6vw, 116px);
+  letter-spacing: -0.02em;
   line-height: 0.8;
 }
 
 .journal-hero h1 em {
   margin-top: 0.08em;
+  letter-spacing: -0.012em;
   line-height: 0.84;
 }
 
@@ -4543,6 +4545,10 @@ input:focus-visible {
     border-bottom: 1px solid var(--ink);
   }
 
+  .subject-grid a:nth-child(-n + 2) {
+    border-bottom: 1px solid var(--ink);
+  }
+
   .subject-grid a:last-child {
     border-bottom: 0;
   }
@@ -4568,12 +4574,13 @@ input:focus-visible {
     margin: clamp(44px, 12svh, 72px) 0 40px;
     font-size: clamp(28px, 9vw, 42px);
     line-height: 0.92;
-    letter-spacing: -0.045em;
+    letter-spacing: -0.012em;
   }
 
   .journal-hero h1 em {
     margin-top: 9px;
     font-size: clamp(42px, 13.5vw, 58px);
+    letter-spacing: -0.005em;
     line-height: 0.82;
   }
 
