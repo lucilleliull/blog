@@ -4447,23 +4447,6 @@ input:focus-visible {
   white-space: nowrap;
 }
 
-.journal-hero h1 .hero-title-mixed {
-  display: flex;
-  align-items: baseline;
-  gap: 0.15em;
-}
-
-.journal-hero h1 .hero-title-mixed strong {
-  font: inherit;
-  font-weight: 800;
-  letter-spacing: inherit;
-}
-
-.journal-hero h1 .hero-title-mixed em {
-  display: inline;
-  margin: 0;
-}
-
 /* Li Xiaolai-inspired editorial rhythm: the homepage statement is a deliberate
    three-line composition at every viewport, never a single oversized row. */
 .journal-hero h1 {
@@ -4480,6 +4463,14 @@ input:focus-visible {
   margin-top: 0.08em;
   letter-spacing: -0.012em;
   line-height: 0.84;
+}
+
+.journal-hero h1 em span {
+  display: block;
+}
+
+.journal-hero h1 em span + span {
+  margin-top: -0.04em;
 }
 
 /* Search results need their own readable vertical rhythm, especially for long
@@ -4580,21 +4571,21 @@ input:focus-visible {
   .journal-hero h1 {
     width: 100%;
     max-width: none;
-    margin: clamp(44px, 12svh, 72px) 0 40px;
-    font-size: clamp(28px, 9vw, 42px);
-    line-height: 0.92;
-    letter-spacing: -0.012em;
+    margin: clamp(36px, 8svh, 56px) 0 clamp(42px, 8svh, 58px);
+    font-size: clamp(42px, 13.5vw, 58px);
+    line-height: 0.84;
+    letter-spacing: -0.02em;
   }
 
   .journal-hero h1 em {
-    margin-top: 9px;
-    font-size: clamp(42px, 13.5vw, 58px);
-    letter-spacing: -0.005em;
-    line-height: 0.82;
+    margin-top: 0.08em;
+    font-size: inherit;
+    letter-spacing: -0.012em;
+    line-height: 0.84;
   }
 
-  .journal-hero h1 .hero-title-mixed {
-    gap: 0.12em;
+  .journal-hero h1 em span {
+    display: block;
   }
 
   .split-heading .text-link.motion-link {
