@@ -4447,6 +4447,23 @@ input:focus-visible {
   white-space: nowrap;
 }
 
+.journal-hero h1 .hero-title-mixed {
+  display: flex;
+  align-items: baseline;
+  gap: 0.15em;
+}
+
+.journal-hero h1 .hero-title-mixed strong {
+  font: inherit;
+  font-weight: 800;
+  letter-spacing: inherit;
+}
+
+.journal-hero h1 .hero-title-mixed em {
+  display: inline;
+  margin: 0;
+}
+
 /* Li Xiaolai-inspired editorial rhythm: the homepage statement is a deliberate
    three-line composition at every viewport, never a single oversized row. */
 .journal-hero h1 {
@@ -4463,14 +4480,6 @@ input:focus-visible {
   margin-top: 0.08em;
   letter-spacing: -0.012em;
   line-height: 0.84;
-}
-
-.journal-hero h1 em span {
-  display: block;
-}
-
-.journal-hero h1 em span + span {
-  margin-top: -0.04em;
 }
 
 /* Search results need their own readable vertical rhythm, especially for long
@@ -4584,8 +4593,8 @@ input:focus-visible {
     line-height: 0.82;
   }
 
-  .journal-hero h1 em span {
-    display: block;
+  .journal-hero h1 .hero-title-mixed {
+    gap: 0.12em;
   }
 
   .split-heading .text-link.motion-link {
